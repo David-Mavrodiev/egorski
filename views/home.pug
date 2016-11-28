@@ -1,0 +1,46 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    title Е-горски
+    link(rel='shortcut icon', type='image/x-icon', href='favicon.ico')
+    link(rel='stylesheet', href='static/css/bootstrap.min.css')
+    style(media='screen').
+      .footer{
+      background-color: #dbd6d6;
+      text-align: center;
+      }
+  body
+    script(type='text/javascript', src='static/js/jquery.js')
+    script(src='static/js/bootstrap.min.js')
+    .jumbotron.text-center
+      if result.isUserAuthenticated
+        h2(style='color: green;text-shadow: 2px 2px #1ff438;')= 'Добре дошъл, ' + result.username + '!'
+        a(href='/logout')
+          span.btn-lg.btn-success Изход
+      else
+        h1(style='color: green;text-shadow: 2px 2px #1ff438;') e-горски
+        p
+            | (онлайн платформа за подаване на сигнали за закононарушения в защитени горски територии)
+    .container
+      .row
+        if result.isUserAuthenticated
+            .col-sm-4
+            a(href='/send')
+                h3.btn-lg.btn-success СИГНАЛИЗИРАЙ
+            p Регистрация на сигнал.
+            .col-sm-4
+            a(href='/response')
+                h3.btn-lg.btn-success ОБРАТНА ВРЪЗКА
+            p Отговор на сигнала.
+            .col-sm-4
+            a(href='/help')
+                h3.btn-lg.btn-success ПОМОЩ
+            p Информация за подаване на сигнала и получаване на обратна връзка.
+        else
+            .col-sm-4
+            a(href='/login')
+                h3.btn-lg.btn-success(style="text-align: center;") Вход / Регистрация
+      .footer.navbar-fixed-bottom
+        h2 Made by David Mavrodiev
+        .footer.navbar-fixed-bottom

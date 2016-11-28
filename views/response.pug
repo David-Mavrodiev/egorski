@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    title Е-горски
+    link(rel='shortcut icon', type='image/x-icon', href='favicon.ico')
+    link(rel='stylesheet', href='static/css/bootstrap.min.css')
+    style(media='screen').
+      .jumbotron{
+      padding: 0.5em 0.6em;
+      }
+      .jumbotron h1{
+      font-size: 2em;
+      }
+      .footer{
+      background-color: #dbd6d6;
+      text-align: center;
+      }
+  body
+    script(type='text/javascript', src='static/js/jquery.js')
+    script(src='static/js/bootstrap.min.js')
+    .jumbotron.text-center
+      h1 Проверка
+    .container(style='margin: 10% auto;')
+      .text-center
+        h3 Входящ номер
+        input#number.form-control.input-lg(type='text')
+        br
+        button#submit-button.btn-lg.btn-success Изпрати
+    .footer.navbar-fixed-bottom
+      h4 Made by David Mavrodiev
+    script(src='static/js/signalsChecker.js', type='text/javascript')
