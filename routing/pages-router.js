@@ -15,7 +15,8 @@ module.exports = app => {
         .get('/send', pagesController.getSend)
         .post('/send', pagesController.send)
         .get('/response', pagesController.getResponse)
-        .post('/response', pagesController.response);
+        .post('/response', pagesController.response)
+        .get('/', pagesController.getHome);
 
     app.use(router);
 };
