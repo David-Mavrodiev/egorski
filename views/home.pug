@@ -3,7 +3,7 @@ html
   head
     meta(charset='utf-8')
     title Е-горски
-    link(rel='shortcut icon', type='image/x-icon', href='favicon.ico')
+    link(rel='shortcut icon', type='image/x-icon', href='static/favicon.ico')
     link(rel='stylesheet', href='static/css/bootstrap.min.css')
     style(media='screen').
       .footer{
@@ -15,9 +15,13 @@ html
     script(src='static/js/bootstrap.min.js')
     .jumbotron.text-center
       if result.isUserAuthenticated
-        h2(style='color: green;text-shadow: 2px 2px #1ff438;')= 'Добре дошъл, ' + result.username + '!'
-        a(href='/logout')
-          span.btn-lg.btn-success Изход
+        h2(style='color: blue;text-shadow: 2px 2px #42d9f4;')= 'ПРИВЕТ, ' + result.username + '!'
+        hr
+        div(style="width: 60%;margin: 0 20%")
+          a(href='/logout')
+             span.btn-lg.btn-primary.pull-right Изход
+          a(href='/logout')
+             span.btn-lg.btn-info.pull-left Чат
       else
         h1(style='color: green;text-shadow: 2px 2px #1ff438;') e-горски
         p
@@ -27,20 +31,22 @@ html
         if result.isUserAuthenticated
             .col-sm-4
             a(href='/send')
-                h3.btn-lg.btn-success СИГНАЛИЗИРАЙ
-            p Регистрация на сигнал.
+                h3.btn-lg.btn-success.text-center СИГНАЛИЗИРАЙ
+            p.text-center Регистрация на сигнал.
             .col-sm-4
             a(href='/response')
-                h3.btn-lg.btn-success ОБРАТНА ВРЪЗКА
-            p Отговор на сигнала.
+                h3.btn-lg.btn-success.text-center ОБРАТНА ВРЪЗКА
+            p.text-center Отговор на сигнала.
             .col-sm-4
             a(href='/help')
-                h3.btn-lg.btn-success ПОМОЩ
-            p Информация за подаване на сигнала и получаване на обратна връзка.
+                h3.btn-lg.btn-success.text-center ПОМОЩ
+            p.text-center Информация за подаване на сигнала и получаване на обратна връзка.
+            .col-sm-4
         else
             .col-sm-4
             a(href='/login')
                 h3.btn-lg.btn-success(style="text-align: center;") Вход / Регистрация
+            img.img-responsive.img-rounded(src="static/tree.gif" style = "height: 15em; margin: 0 auto;")
       .footer.navbar-fixed-bottom
-        h2 Made by David Mavrodiev
+        h4 Made by David Mavrodiev
         .footer.navbar-fixed-bottom

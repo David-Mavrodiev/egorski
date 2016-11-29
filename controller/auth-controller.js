@@ -14,7 +14,8 @@ module.exports = function(data) {
                 if (!user) {
                     res.render('../views/error.pug', {
                         result: {
-                            error: 'Грешно име или парола!'
+                            error: 'Грешно име или парола!',
+                            back: '/login'
                         }
                     });
                 }
@@ -35,17 +36,53 @@ module.exports = function(data) {
             req.logout();
             res.redirect('/home');
         },
-        register(req, res) {
-            const user = {
-                username: req.body.username,
-                password: req.body.password
-            };
+        register(req, res, next) {
+            data.findByUsername(req.body.username)
+                .then(u => {
+                    if (u) {
+                        res.render('../views/error.pug', {
+                            result: {
+                                error: 'Потребителското име е заето!',
+                                back: '/login'
+                            }
+                        });
+                    } else {
+                        const user = {
+                            username: req.body.username,
+                            password: req.body.password
+                        };
 
-            data.createUser(user)
-                .then(dbUser => {
-                    res.redirect('/home');
+                        data.createUser(user)
+                            .then(() => {
+                                const auth = passport.authenticate('local', function(error, user) {
+                                    if (error) {
+                                        next(error);
+                                        return;
+                                    }
+
+                                    if (!user) {
+                                        res.render('../views/error.pug', {
+                                            result: {
+                                                error: 'Грешно име или парола!',
+                                                back: '/login'
+                                            }
+                                        });
+                                    }
+
+                                    req.login(user, error => {
+                                        if (error) {
+                                            next(error);
+                                            return;
+                                        }
+
+                                        res.redirect('/home');
+                                    });
+                                });
+
+                                auth(req, res, next);
+                            });
+                    }
                 })
-                .catch(error => res.status(500).json(error));
         }
     }
 };
