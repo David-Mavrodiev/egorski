@@ -1,0 +1,29 @@
+html
+  head
+    link(rel='shortcut icon', type='image/x-icon', href='static/favicon.ico')
+    link(href='static/css/bootstrap.min.css', rel='stylesheet')
+    link(href='static/css/chat-styles.css', rel='stylesheet')
+  body
+    .chat_window
+      .top_menu
+        .buttons
+          .button.close
+          .button.minimize
+          .button.maximize
+        .title= result.adminName + "-" + result.userName
+      ul.messages
+      .bottom_wrapper.clearfix
+        .message_input_wrapper
+          input.message_input(placeholder='Напишете вашето съобщение тук...')
+        .send_message
+          .icon
+          .text Изпрати
+    .message_template
+      li.message
+        .avatar
+        .text_wrapper
+          .text
+    script(src='static/js/jquery.js')
+    script(src='static/js/bootstrap.min.js')
+    script(src="/socket.io/socket.io.js")
+    script(src='static/js/chat-logic.js')

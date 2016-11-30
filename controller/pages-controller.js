@@ -1,7 +1,7 @@
 'use strict';
 let registeredNumber = 0;
 
-module.exports = function(signalsData) {
+module.exports = function(signalsData, usersData) {
     return {
         getHome(req, res) {
             if (req.isAuthenticated()) {
@@ -29,6 +29,40 @@ module.exports = function(signalsData) {
         getResponse(req, res) {
             res.render("../views/response.pug");
         },
+        getAdminsList(req, res) {
+            usersData.findByIsAdmin(true)
+                .then((ads) => {
+                    let admins = ads;
+                    usersData.findByIsAdmin(false).then((users) => {
+                        res.render("../views/show-admins.pug", {
+                            result: {
+                                me: req.user,
+                                organizations: admins,
+                                users: users
+                            }
+                        });
+                    });
+                });
+        },
+        getChat(req, res) {
+            let user;
+
+            if (req.isAuthenticated()) {
+                user = {
+                    username: req.user.username
+                };
+                let admin = {
+                    username: req.params.username
+                };
+                //console.log(user.username + " " + admin.username)
+                res.render("../views/chat.pug", {
+                    result: {
+                        adminName: admin.username,
+                        userName: user.username
+                    }
+                });
+            }
+        },
         response(req, res) {
             let body = req.body;
             console.log(body);
@@ -36,7 +70,6 @@ module.exports = function(signalsData) {
                 //console.log(signal.answer);
                 res.send(signal.answer);
             });
-
         },
         send(req, res) {
             let body = req.body;

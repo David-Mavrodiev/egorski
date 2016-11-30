@@ -13,6 +13,7 @@ html
   body
     script(type='text/javascript', src='static/js/jquery.js')
     script(src='static/js/bootstrap.min.js')
+    script(src="socket.io/socket.io.js")
     .jumbotron.text-center
       if result.isUserAuthenticated
         h2(style='color: blue;text-shadow: 2px 2px #42d9f4;')= 'ПРИВЕТ, ' + result.username + '!'
@@ -20,7 +21,7 @@ html
         div(style="width: 60%;margin: 0 20%")
           a(href='/logout')
              span.btn-lg.btn-primary.pull-right Изход
-          a(href='/logout')
+          a(href='/admins')
              span.btn-lg.btn-info.pull-left Чат
       else
         h1(style='color: green;text-shadow: 2px 2px #1ff438;') e-горски

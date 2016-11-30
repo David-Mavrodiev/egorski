@@ -2,9 +2,10 @@
 
 const router = require('express').Router(),
     createPagesController = require('../controller/pages-controller'),
-    signalsData = require('../data/signals-data');
+    signalsData = require('../data/signals-data'),
+    usersData = require('../data/users-data');
 
-const pagesController = createPagesController(signalsData);
+const pagesController = createPagesController(signalsData, usersData);
 
 
 
@@ -16,6 +17,8 @@ module.exports = app => {
         .post('/send', pagesController.send)
         .get('/response', pagesController.getResponse)
         .post('/response', pagesController.response)
+        .get('/admins', pagesController.getAdminsList)
+        .get('/chat/:username', pagesController.getChat)
         .get('/', pagesController.getHome);
 
     app.use(router);

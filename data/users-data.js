@@ -26,10 +26,19 @@ module.exports = {
 
         return Promise.resolve(query.exec());
     },
+    findByIsAdmin(condition) {
+        let query = User.find()
+            .where({
+                IsAdmin: condition
+            });
+
+        return Promise.resolve(query.exec());
+    },
     createUser(obj) {
         let user = new User({
             username: obj.username,
-            password: obj.password
+            password: obj.password,
+            IsAdmin: false
         });
 
         return Promise.resolve(user.save());
