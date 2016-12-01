@@ -1,0 +1,43 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    title Е-горски
+    link(rel='shortcut icon', type='image/x-icon', href='static/favicon.ico')
+    link(rel='stylesheet', href='static/css/bootstrap.min.css')
+    style(media='screen').
+      .footer{
+      background-color: #dbd6d6;
+      text-align: center;
+      }
+      .jumbotron{
+      padding: 0.5em 0.6em;
+      }
+      .jumbotron h1{
+      font-size: 2em;
+      }
+  body
+    script(type='text/javascript', src='static/js/jquery.js')
+    script(src='static/js/bootstrap.min.js')
+    .container
+      h2.text-center Всички сигнали
+      hr
+      table.table.table-striped
+        thead
+          tr
+            th(style="color: brown") Покажи
+            th(style="color: brown") Входящ номер
+            th(style="color: brown") Име
+            th(style="color: brown") Фамилия
+            th(style="color: brown") Телефонен номер
+        tbody
+          each signal in result.signals
+            tr
+             td
+              a(href="signal/" + signal.registeredNumber) Покажи
+             td= signal.registeredNumber
+             td= signal.firstname
+             td= signal.lastname
+             td= signal.number
+    .footer.navbar-fixed-bottom
+        h4 Made by David Mavrodiev    

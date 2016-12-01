@@ -38,7 +38,7 @@ btn.addEventListener('click', function() {
             data: JSON.stringify(body),
             success: function(response) {
                 var container = document.getElementsByClassName("container")[0];
-                container.innerHTML = `<div style=\"padding:10em 0;\" class=\" text-center\"><h2>Благодарим ви. Сигналът е приет с входящ номер: ${response}</h2></div>`;
+                container.innerHTML = `<div style=\"padding:10em 0;\" class=\" text-center\"><h2>Благодарим Ви! Сигналът е приет с входящ номер ${response}.</h2></div>`;
             }
         });
     }

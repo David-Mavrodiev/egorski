@@ -18,6 +18,10 @@ db.on("open", () => {
 });
 
 module.exports = {
+    findAll() {
+        let query = Signal.find().where({});
+        return Promise.resolve(query.exec());
+    },
     findByRegisteredNumber(number) {
         let query = Signal.findOne()
             .where({
@@ -35,7 +39,7 @@ module.exports = {
             number: obj.number,
             lat: obj.lat,
             lng: obj.lng,
-            answer: "Сигналът все още не е проверен! Моля опитайте по-късно."
+            answer: "Сигналът все още не е проверен. Моля, опитайте по-късно!"
         });
 
         return Promise.resolve(signal.save());

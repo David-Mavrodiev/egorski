@@ -13,10 +13,9 @@ html
   body
     script(type='text/javascript', src='static/js/jquery.js')
     script(src='static/js/bootstrap.min.js')
-    script(src="socket.io/socket.io.js")
     .jumbotron.text-center
       if result.isUserAuthenticated
-        h2(style='color: blue;text-shadow: 2px 2px #42d9f4;')= 'ПРИВЕТ, ' + result.username + '!'
+        h2(style='color: blue;text-shadow: 2px 2px #42d9f4;')= 'Привет, ' + result.username + '!'
         hr
         div(style="width: 60%;margin: 0 20%")
           a(href='/logout')
@@ -25,24 +24,30 @@ html
              span.btn-lg.btn-info.pull-left Чат
       else
         h1(style='color: green;text-shadow: 2px 2px #1ff438;') e-горски
-        p
-            | (онлайн платформа за подаване на сигнали за закононарушения в защитени горски територии)
+        p(style="color: brown")
+            | (онлайн система за подаване на сигнали за закононарушения в защитени горски територии)
     .container
       .row
         if result.isUserAuthenticated
-            .col-sm-4
-            a(href='/send')
+            if result.IsAdmin
+              .col-sm-4
+              a(href='/signals')
+                h3.btn-lg.btn-success.text-center ПОЛУЧЕНИ СИГНАЛИ
+              p.text-center Показване на получените сигнали.
+            else
+              .col-sm-4
+              a(href='/send')
                 h3.btn-lg.btn-success.text-center СИГНАЛИЗИРАЙ
-            p.text-center Регистрация на сигнал.
-            .col-sm-4
-            a(href='/response')
+              p.text-center Регистрация на сигнал.              
+              .col-sm-4
+              a(href='/response')
                 h3.btn-lg.btn-success.text-center ОБРАТНА ВРЪЗКА
-            p.text-center Отговор на сигнала.
-            .col-sm-4
-            a(href='/help')
+              p.text-center Отговор на сигнала.
+              .col-sm-4
+              a(href='/help')
                 h3.btn-lg.btn-success.text-center ПОМОЩ
-            p.text-center Информация за подаване на сигнала и получаване на обратна връзка.
-            .col-sm-4
+              p.text-center Информация за подаване на сигнала и получаване на обратна връзка.
+              .col-sm-4
         else
             .col-sm-4
             a(href='/login')

@@ -1,0 +1,43 @@
+html  
+  head
+    link(rel='shortcut icon', type='image/x-icon', href='static/favicon.ico')
+    link(rel='stylesheet', href='static/css/bootstrap.min.css')
+    style(media='screen').
+      .footer{
+      background-color: #dbd6d6;
+      text-align: center;
+      }
+      .jumbotron{
+      padding: 0.5em 0.6em;
+      }
+      .jumbotron h1{
+      font-size: 2em;
+      }
+  body
+    .jumbotron.text-center
+      h2(style="color: brown")#number= "Сигнал № " + result.registeredNumber
+    .container
+      hr
+      h4= "Име: " + result.firstname
+      hr
+      h4= "Фамилия: " + result.lastname
+      hr
+      h4= "Описание: " + result.description
+      hr
+      h4= "Телефонен номер: " + result.number
+      hr
+      h4= "Кординати: (" + result.lat + ", " + result.lng + ")"
+      hr
+      h4= "Отговор: " + result.answer
+      hr
+      label(for='comment', style="color: brown") Напиши нов отговор:
+      textarea#comment.form-control(rows='5')
+      hr
+      a#button-send.btn-lg.btn-success(type='submit', style='margin: 0 45%;') Запиши
+      div(style="padding: 2% 0")
+      .footer.navbar-fixed-bottom
+        h4 Made by David Mavrodiev
+      script(src='static/js/jquery.js')
+      script(src='static/js/bootstrap.min.js')
+      script(src='static/js/update-answer.js')
+    

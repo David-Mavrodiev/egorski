@@ -13,10 +13,12 @@ app.use(cookieParser());
 app.use(session({ secret: 'purple unicorn' }));
 app.use("/static", express.static("public"));
 app.use("/chat/static", express.static("public"))
+app.use("/signal/static", express.static("public"))
 app.set("view engine", "pug");
 
 require('../passport/')(app);
 require('../../routing/users-router')(app);
 require('../../routing/pages-router')(app);
+require('../../routing/chats-router')(app);
 
 module.exports = app;
