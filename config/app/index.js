@@ -20,5 +20,6 @@ require('../passport/')(app);
 require('../../routing/users-router')(app);
 require('../../routing/pages-router')(app);
 require('../../routing/chats-router')(app);
+require('../../routing/feedback-router')(app);
 
 module.exports = app;

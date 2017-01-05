@@ -43,5 +43,15 @@ module.exports = {
         });
 
         return Promise.resolve(signal.save());
+    },
+    getNumberOfAllSignals() {
+        return new Promise((resolve, reject) => {
+            Signal.count({}, function(err, count) {
+                if (err) {
+                    reject(err);
+                }
+                resolve(count);
+            });
+        });
     }
 };

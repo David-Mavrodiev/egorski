@@ -48,11 +48,67 @@ html
                 h3.btn-lg.btn-success.text-center ПОМОЩ
               p.text-center Информация за подаване на сигнала и получаване на обратна връзка.
               .col-sm-4
+              hr
+              .container(style="margin: 40px;")
+                .alert.alert-success#Alert(style="display:none;text-align:center")
+                  strong Успяхте!
+                  |  Вашият отзив бе публикуван.
+                .row
+                  .col-md-6.col-md-offset-3
+                    .well.well-sm
+                      form.form-horizontal#myform(action='/feedback', method='post')
+                        fieldset
+                          legend.text-center(style="color: blue") Отзив
+                          .form-group
+                            label.col-md-3.control-label(for='firstname', style="color: blue") Име
+                            .col-md-9
+                              input#firstname.form-control(name='firstname', type='text')
+                          .form-group
+                            label.col-md-3.control-label(for='lastname', style="color: blue") Фамилия
+                            .col-md-9
+                              input#lastname.form-control(name='lastname', type='text')
+                          .form-group
+                            label.col-md-3.control-label(for='text', style="color: blue") Текст
+                            .col-md-9
+                              textarea#text.form-control(name='text', rows='5')
+                          .form-group
+                            .col-md-12.text-right
+                              button.btn.btn-primary.btn-lg(type='submit') Изпрати
+                          
         else
             .col-sm-4
             a(href='/login')
                 h3.btn-lg.btn-success(style="text-align: center;") Вход / Регистрация
             img.img-responsive.img-rounded(src="static/tree.gif" style = "height: 15em; margin: 0 auto;")
+            hr
+            each feedback, index in result.feedbacks
+              .container
+                .row
+                  .col-md-6.col-md-offset-3
+                    h3(style="color: brown")= 'Отзив №' + (index + 1)
+                .row
+                  .col-md-6.col-md-offset-3
+                    .panel.panel-default
+                      .panel-heading
+                        strong= feedback.firstname + " " + feedback.lastname
+                      .panel-body(style="color: green")= feedback.text
+            .container(style="margin: 50px;")                
       .footer.navbar-fixed-bottom
-        h4 Made by David Mavrodiev
-        .footer.navbar-fixed-bottom
+        h4
+          | Made by 
+          a(href='https://github.com/David-Mavrodiev') David Mavrodiev
+      
+script(type='text/javascript').
+  var frm = $('#myform');
+  frm.submit(function (ev) {
+  $.ajax({
+  type: frm.attr('method'),
+  url: frm.attr('action'),
+  data: frm.serialize(),
+  success: function (data) {
+  $("#Alert").css('display', "block");
+  }
+  });
+  ev.preventDefault();
+  });
+

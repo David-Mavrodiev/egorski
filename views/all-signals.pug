@@ -19,6 +19,13 @@ html(lang='en')
   body
     script(type='text/javascript', src='static/js/jquery.js')
     script(src='static/js/bootstrap.min.js')
+    nav.navbar.navbar-inverse
+      .container-fluid
+        .navbar-header
+          a.navbar-brand(href='/home') Е-горски
+        ul.nav.navbar-nav
+          li
+            a(href='/home') Начало   
     .container
       h2.text-center Всички сигнали
       hr
@@ -40,4 +47,6 @@ html(lang='en')
              td= signal.lastname
              td= signal.number
     .footer.navbar-fixed-bottom
-        h4 Made by David Mavrodiev    
+        h4
+          | Made by 
+          a(href='https://github.com/David-Mavrodiev') David Mavrodiev

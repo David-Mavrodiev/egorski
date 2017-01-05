@@ -4,6 +4,22 @@ html
     link(href='static/css/bootstrap.min.css', rel='stylesheet')
     link(href='static/css/chat-styles.css', rel='stylesheet')
   body
+    nav.navbar.navbar-inverse
+      .container-fluid
+        .navbar-header
+          a.navbar-brand(href='/home') Е-горски
+        ul.nav.navbar-nav
+          li
+            a(href='/home') Начало
+          li
+            a(href='/admins') Потребители
+          if !result.IsAdmin
+            li
+              a(href='/send') Сигнализирай
+            li
+              a(href='/response') Обратна връзка
+            li
+              a(href='/help') Помощ   
     .chat_window
       .top_menu
         .buttons

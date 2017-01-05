@@ -1,7 +1,5 @@
 'use strict';
-let registeredNumber = 0;
-
-module.exports = function(signalsData, usersData) {
+module.exports = function(signalsData, feedbackData) {
     return {
         getHome(req, res) {
             if (req.isAuthenticated()) {
@@ -14,10 +12,13 @@ module.exports = function(signalsData, usersData) {
                     }
                 });
             } else {
-                res.render("../views/home.pug", {
-                    result: {
-                        isUserAuthenticated: false
-                    }
+                feedbackData.getAll().then((feedbacks) => {
+                    res.render("../views/home.pug", {
+                        result: {
+                            isUserAuthenticated: false,
+                            feedbacks: feedbacks
+                        }
+                    });
                 });
             }
         },
@@ -140,9 +141,10 @@ module.exports = function(signalsData, usersData) {
         send(req, res) {
             if (req.isAuthenticated()) {
                 let body = req.body;
-                registeredNumber++;
-                signalsData.createSignal(body, registeredNumber);
-                res.send("" + registeredNumber);
+                signalsData.getNumberOfAllSignals().then((count) => {
+                    signalsData.createSignal(body, count);
+                    res.send("" + count);
+                });
             } else {
                 res.render("../views/error.pug", {
                     result: {

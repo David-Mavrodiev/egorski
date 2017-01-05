@@ -14,6 +14,15 @@ html
       font-size: 2em;
       }
   body
+    nav.navbar.navbar-inverse
+      .container-fluid
+        .navbar-header
+          a.navbar-brand(href='/home') Е-горски
+        ul.nav.navbar-nav
+          li
+            a(href='/home') Начало
+          li
+            a(href='/signals') Сигнали
     .jumbotron.text-center
       h2(style="color: brown")#number= "Сигнал № " + result.registeredNumber
     .container
@@ -26,7 +35,8 @@ html
       hr
       h4= "Телефонен номер: " + result.number
       hr
-      h4= "Кординати: (" + result.lat + ", " + result.lng + ")"
+      h4#cord= "Кординати: (" + result.lat + ", " + result.lng + ")"
+      #map(style='height: 20em;width: 80em;')
       hr
       h4= "Отговор: " + result.answer
       hr
@@ -36,8 +46,11 @@ html
       a#button-send.btn-lg.btn-success(type='submit', style='margin: 0 45%;') Запиши
       div(style="padding: 2% 0")
       .footer.navbar-fixed-bottom
-        h4 Made by David Mavrodiev
+        h4
+          | Made by 
+          a(href='https://github.com/David-Mavrodiev') David Mavrodiev
       script(src='static/js/jquery.js')
       script(src='static/js/bootstrap.min.js')
       script(src='static/js/update-answer.js')
-    
+      script(src='static/js/show-map.js')
+      script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDGdbK_GwOx6mczwoOivBnt0M_i5PI1EZA&callback=initMap')

@@ -19,6 +19,19 @@ html
   body
     script(type='text/javascript', src='static/js/jquery.js')
     script(src='static/js/bootstrap.min.js')
+    nav.navbar.navbar-inverse
+      .container-fluid
+        .navbar-header
+          a.navbar-brand(href='/home') Е-горски
+        ul.nav.navbar-nav
+          li
+            a(href='/home') Начало
+          li
+            a(href='/send') Сигнализирай
+          li
+            a(href='/response') Обратна връзка
+          li.active
+            a(href='/help') Помощ          
     .jumbotron.text-center
       h1(style="color: brown") Обща информация
     .container
@@ -35,4 +48,7 @@ html
           span(style='color: green;font-size: 2em;')
             b БЪДЕТЕ ОЧИТЕ И ГЛАСА НА БЪЛГАРСКАТА ГОРА!
       .footer.navbar-fixed-bottom
-        h4 Made by David Mavrodiev
+        h4
+          | Made by 
+          a(href='https://github.com/David-Mavrodiev') David Mavrodiev
+

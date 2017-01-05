@@ -2,11 +2,10 @@
 
 const router = require('express').Router(),
     createPagesController = require('../controller/pages-controller'),
-    signalsData = require('../data/signals-data');
+    signalsData = require('../data/signals-data'),
+    feedbackData = require('../data/feedback-data');
 
-const pagesController = createPagesController(signalsData);
-
-
+const pagesController = createPagesController(signalsData, feedbackData);
 
 module.exports = app => {
     router

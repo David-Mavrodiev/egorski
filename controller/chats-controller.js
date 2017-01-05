@@ -13,7 +13,8 @@ module.exports = function(usersData) {
                                 result: {
                                     me: req.user,
                                     organizations: admins,
-                                    users: users
+                                    users: users,
+                                    IsAdmin: req.user.IsAdmin
                                 }
                             });
                         });
@@ -30,7 +31,6 @@ module.exports = function(usersData) {
         },
         getChat(req, res) {
             let user;
-
             if (req.isAuthenticated()) {
                 user = {
                     username: req.user.username
@@ -42,7 +42,8 @@ module.exports = function(usersData) {
                 res.render("../views/chat.pug", {
                     result: {
                         adminName: admin.username,
-                        userName: user.username
+                        userName: user.username,
+                        IsAdmin: req.user.IsAdmin
                     }
                 });
             } else {
